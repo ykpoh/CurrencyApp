@@ -4,49 +4,45 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ConvertedAmountCell" customModule="CurrencyApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AUD 1000.574839278423" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YmK-vE-jc0">
-                    <rect key="frame" x="189" y="90" width="201" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="(1 MYR = 0.3333 AUD)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xb-ie-USG">
-                    <rect key="frame" x="24" y="93" width="128" height="14.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <constraints>
-                <constraint firstItem="9xb-ie-USG" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="akS-6T-cCE"/>
-                <constraint firstItem="9xb-ie-USG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="iVs-xl-sgi"/>
-                <constraint firstItem="YmK-vE-jc0" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="sfc-FM-ny3"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="YmK-vE-jc0" secondAttribute="trailing" constant="24" id="xCV-8K-jRc"/>
-                <constraint firstItem="YmK-vE-jc0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9xb-ie-USG" secondAttribute="trailing" constant="16" id="xl3-Vv-RYL"/>
-            </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ConvertedAmountCell" id="KGk-i7-Jjw" customClass="ConvertedAmountCell" customModule="CurrencyApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="(1 MYR = 0.332323AUD)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsp-yk-Mqm">
+                        <rect key="frame" x="0.0" y="15" width="132" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="23232323232323232323232323232323" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8In-hE-aVQ">
+                        <rect key="frame" x="148" y="11.5" width="172" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="8In-hE-aVQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="57A-WM-kJ3"/>
+                    <constraint firstItem="dsp-yk-Mqm" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PfM-wn-xjC"/>
+                    <constraint firstAttribute="trailing" secondItem="8In-hE-aVQ" secondAttribute="trailing" id="WOb-4h-tOv"/>
+                    <constraint firstItem="dsp-yk-Mqm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="oau-ti-mpN"/>
+                    <constraint firstItem="8In-hE-aVQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dsp-yk-Mqm" secondAttribute="trailing" constant="16" id="vOQ-a3-XUs"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="convertedAmountLabel" destination="YmK-vE-jc0" id="IMx-jJ-BvI"/>
-                <outlet property="exchangeRateLabel" destination="9xb-ie-USG" id="Hi6-Tx-uYb"/>
+                <outlet property="convertedAmountLabel" destination="8In-hE-aVQ" id="Lkb-hE-eTF"/>
+                <outlet property="exchangeRateLabel" destination="dsp-yk-Mqm" id="1Hg-64-OQJ"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="55.580357142857139"/>
-        </view>
+            <point key="canvasLocation" x="-51" y="44"/>
+        </tableViewCell>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

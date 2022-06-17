@@ -15,9 +15,7 @@ class CurrencyTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         try super.setUpWithError()
-        let bundle = Bundle(for: type(of: self))
-        let url = bundle.url(forResource: "Currencies", withExtension: "json")!
-        let data = try! Data(contentsOf: url)
+        let data = getJSONData(filename: "Currencies")
       
         let decoder = JSONDecoder()
         let dictionaries = try! decoder.decode([String:String].self, from: data)
@@ -32,11 +30,11 @@ class CurrencyTests: XCTestCase {
         try super.tearDownWithError()
     }
     
-    func testDecode_SymbolReturn() {
+    func testDecode_ReturnNotNilAndEmptyArray() {
         XCTAssertNotNil(sut)
         XCTAssertFalse(sut.isEmpty)
-        let symbol = Currency(symbol: "AED", name: "United Arab Emirates Dirham")
-        XCTAssertTrue(sut.contains(where: { $0 == symbol}))
+        let currency = Currency(symbol: "AED", name: "United Arab Emirates Dirham")
+        XCTAssertTrue(sut.contains(where: { $0 == currency}))
     }
 
 }

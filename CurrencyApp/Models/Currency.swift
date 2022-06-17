@@ -7,18 +7,28 @@
 
 import Foundation
 
-struct Currency: Codable, Equatable {
-    let symbol: String
-    let name: String
-    var fullName: String {
+struct Currency: Codable {
+    let symbol: String?
+    let name: String?
+    var fullName: String? {
+        guard let symbol = symbol, let name = name else {
+            return nil
+        }
         return "\(symbol) - \(name)"
+    }
+    
+    init(symbol: String, name: String? = nil) {
+        self.symbol = symbol
+        self.name = name
     }
 }
 
-func ==(lhs: Currency, rhs: Currency) -> Bool {
-    if lhs.symbol != rhs.symbol || lhs.name != rhs.name {
-        return false
-    }
-    
-    return true
+extension Currency: Equatable {
+  static func == (lhs: Currency, rhs: Currency) -> Bool {
+      if lhs.symbol != rhs.symbol || lhs.name != rhs.name {
+          return false
+      }
+      
+      return true
+  }
 }

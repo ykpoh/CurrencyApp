@@ -58,10 +58,60 @@ class OpenExchangeRatesService {
                 do {
                     let decoder = JSONDecoder()
                     let dictionaries = try decoder.decode([String:String].self, from: data)
-                    let openExchangeRatesData = dictionaries.compactMap({ key, value in
+                    let currencyData = dictionaries.compactMap({ key, value in
                         Currency(symbol: key, name: value)
                     })
-                    completion(openExchangeRatesData, nil)
+                    
+                    completion(currencyData, nil)
+                } catch {
+                    print("Unable to decode OpenExchangeRates response: \(error.localizedDescription)")
+                    completion(nil, .invalidData)
+                }
+            }
+        }.resume()
+    }
+    
+    static func getLatestExchangeRates(completion: @escaping (LatestExchangeRate?, OpenExchangeRatesError?) -> ()) {
+        var urlBuilder = URLComponents()
+        urlBuilder.scheme = "https"
+        urlBuilder.host = host
+        urlBuilder.path = "/api/latest.json"
+        urlBuilder.queryItems = [
+            URLQueryItem(name: "app_id", value: apiID)
+        ]
+        
+        let url = urlBuilder.url!
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            DispatchQueue.main.async {
+                guard error == nil else {
+                    print("Failed request from OpenExchangeRates: \(error!.localizedDescription)")
+                    completion(nil, .failedRequest)
+                    return
+                }
+                
+                guard let data = data else {
+                    print("No data returned from OpenExchangeRates")
+                    completion(nil, .noData)
+                    return
+                }
+                
+                guard let response = response as? HTTPURLResponse else {
+                    print("Unable to process OpenExchangeRates response")
+                    completion(nil, .invalidResponse)
+                    return
+                }
+                
+                guard response.statusCode == 200 else {
+                    print("Failure response from OpenExchangeRates: \(response.statusCode)")
+                    completion(nil, .failedRequest)
+                    return
+                }
+                
+                do {
+                    let decoder = JSONDecoder()
+                    let ratesData = try decoder.decode(LatestExchangeRate.self, from: data)
+                    completion(ratesData, nil)
                 } catch {
                     print("Unable to decode OpenExchangeRates response: \(error.localizedDescription)")
                     completion(nil, .invalidData)
