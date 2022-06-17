@@ -7,12 +7,17 @@
 
 import Foundation
 
-enum FileStorageServiceType {
+enum FileStorageServiceType: String {
     case currencies
     case latestExchangeRates
 }
 
-class FileStorageService {
+protocol FileStorageServiceProtocol {
+    static func save<T>(value: T, fileType: FileStorageServiceType) where T: Codable
+    static func load<T>(fileType: FileStorageServiceType) -> T? where T: Codable
+}
+
+class FileStorageService: FileStorageServiceProtocol {
     static func save<T>(value: T, fileType: FileStorageServiceType) where T: Codable {
         do {
             let encoder = JSONEncoder()

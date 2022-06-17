@@ -12,6 +12,7 @@ enum OpenExchangeRatesError: Error {
     case noData
     case failedRequest
     case invalidData
+    case emptyURL
 }
 
 class OpenExchangeRatesService {
@@ -27,7 +28,11 @@ class OpenExchangeRatesService {
             URLQueryItem(name: "app_id", value: apiID)
         ]
         
-        let url = urlBuilder.url!
+        guard let url = urlBuilder.url else {
+            print("Empty url detected.")
+            completion(nil, .emptyURL)
+            return
+        }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             DispatchQueue.main.async {
@@ -80,7 +85,11 @@ class OpenExchangeRatesService {
             URLQueryItem(name: "app_id", value: apiID)
         ]
         
-        let url = urlBuilder.url!
+        guard let url = urlBuilder.url else {
+            print("Empty url detected.")
+            completion(nil, .emptyURL)
+            return
+        }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             DispatchQueue.main.async {

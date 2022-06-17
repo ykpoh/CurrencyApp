@@ -20,7 +20,6 @@
 		1289E9422854DC280039D9BB /* OpenExchangeRatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1289E9412854DC280039D9BB /* OpenExchangeRatesService.swift */; };
 		1289E94528559C870039D9BB /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1289E94428559C870039D9BB /* Box.swift */; };
 		1289E94828559D070039D9BB /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1289E94728559D070039D9BB /* CurrencyViewModel.swift */; };
-		1289E9512856F3210039D9BB /* OpenExchangeRatesServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1289E9502856F3210039D9BB /* OpenExchangeRatesServiceTests.swift */; };
 		1289E9542856F4750039D9BB /* ConvertedAmountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1289E9532856F4750039D9BB /* ConvertedAmountViewModel.swift */; };
 		1289E95A28577BD60039D9BB /* LatestExchangeRateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1289E95928577BD60039D9BB /* LatestExchangeRateTests.swift */; };
 		1289E95D28577C4C0039D9BB /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1289E95C28577C4C0039D9BB /* XCTestCase+Helpers.swift */; };
@@ -31,6 +30,10 @@
 		1289E96D285A0DCE0039D9BB /* FileStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1289E96C285A0DCE0039D9BB /* FileStorageService.swift */; };
 		1289E96F285A24C10039D9BB /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1289E96E285A24C10039D9BB /* ExchangeRate.swift */; };
 		12F2334C285C64FA009DD35D /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F2334B285C64FA009DD35D /* Date+Extensions.swift */; };
+		12F2334F285C6A75009DD35D /* CurrencyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F2334E285C6A75009DD35D /* CurrencyViewModelTests.swift */; };
+		12F23352285C6D1E009DD35D /* ConvertedAmountCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F23351285C6D1E009DD35D /* ConvertedAmountCellTests.swift */; };
+		12F23355285C74FF009DD35D /* MockExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F23354285C74FF009DD35D /* MockExtensions.swift */; };
+		12F23357285C7587009DD35D /* CurrencyViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F23356285C7587009DD35D /* CurrencyViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +63,6 @@
 		1289E9412854DC280039D9BB /* OpenExchangeRatesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenExchangeRatesService.swift; sourceTree = "<group>"; };
 		1289E94428559C870039D9BB /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		1289E94728559D070039D9BB /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
-		1289E9502856F3210039D9BB /* OpenExchangeRatesServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenExchangeRatesServiceTests.swift; sourceTree = "<group>"; };
 		1289E9532856F4750039D9BB /* ConvertedAmountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertedAmountViewModel.swift; sourceTree = "<group>"; };
 		1289E95928577BD60039D9BB /* LatestExchangeRateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestExchangeRateTests.swift; sourceTree = "<group>"; };
 		1289E95C28577C4C0039D9BB /* XCTestCase+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Helpers.swift"; sourceTree = "<group>"; };
@@ -71,6 +73,10 @@
 		1289E96C285A0DCE0039D9BB /* FileStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageService.swift; sourceTree = "<group>"; };
 		1289E96E285A24C10039D9BB /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
 		12F2334B285C64FA009DD35D /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		12F2334E285C6A75009DD35D /* CurrencyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModelTests.swift; sourceTree = "<group>"; };
+		12F23351285C6D1E009DD35D /* ConvertedAmountCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertedAmountCellTests.swift; sourceTree = "<group>"; };
+		12F23354285C74FF009DD35D /* MockExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExtensions.swift; sourceTree = "<group>"; };
+		12F23356285C7587009DD35D /* CurrencyViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +137,9 @@
 		1289E918285482F40039D9BB /* CurrencyAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				12F23353285C74EE009DD35D /* Mocks */,
+				12F23350285C6D10009DD35D /* Views */,
+				12F2334D285C6A55009DD35D /* View Models */,
 				1289E95B28577C2D0039D9BB /* Extensions */,
 				1289E9522856F3510039D9BB /* Models */,
 				1289E94F2856F2BF0039D9BB /* Services */,
@@ -206,7 +215,6 @@
 		1289E94F2856F2BF0039D9BB /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				1289E9502856F3210039D9BB /* OpenExchangeRatesServiceTests.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -226,6 +234,31 @@
 				1289E95C28577C4C0039D9BB /* XCTestCase+Helpers.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		12F2334D285C6A55009DD35D /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				12F2334E285C6A75009DD35D /* CurrencyViewModelTests.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		12F23350285C6D10009DD35D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				12F23351285C6D1E009DD35D /* ConvertedAmountCellTests.swift */,
+				12F23356285C7587009DD35D /* CurrencyViewControllerTests.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		12F23353285C74EE009DD35D /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				12F23354285C74FF009DD35D /* MockExtensions.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,9 +388,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1289E95D28577C4C0039D9BB /* XCTestCase+Helpers.swift in Sources */,
-				1289E9512856F3210039D9BB /* OpenExchangeRatesServiceTests.swift in Sources */,
+				12F23352285C6D1E009DD35D /* ConvertedAmountCellTests.swift in Sources */,
+				12F2334F285C6A75009DD35D /* CurrencyViewModelTests.swift in Sources */,
 				1289E95A28577BD60039D9BB /* LatestExchangeRateTests.swift in Sources */,
+				12F23357285C7587009DD35D /* CurrencyViewControllerTests.swift in Sources */,
 				1289E9372854AD6B0039D9BB /* CurrencyTests.swift in Sources */,
+				12F23355285C74FF009DD35D /* MockExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

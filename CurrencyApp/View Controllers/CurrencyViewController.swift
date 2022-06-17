@@ -12,13 +12,14 @@ class CurrencyViewController: UIViewController {
     @IBOutlet weak var currencyTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
-    let viewModel = CurrencyViewModel()
-    
     lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
         return pickerView
     }()
     
+    var viewModel: CurrencyViewModelProtocol = CurrencyViewModel()
+    var userDefaultService: UserDefaultServiceProtocol.Type = UserDefaultService.self
+    var fileStorageService: FileStorageServiceProtocol.Type = FileStorageService.self
     var isLoadingFirstTime = true
     
     override func viewDidLoad() {
@@ -31,16 +32,19 @@ class CurrencyViewController: UIViewController {
         
         amountTextField.delegate = self
         
-        title = "Convert"
-
         tableView.register(UINib(nibName: "\(ConvertedAmountCell.self)", bundle: nil), forCellReuseIdentifier: "\(ConvertedAmountCell.self)")
         
         currencyTextField.inputView = pickerView
         
+        viewModel.title.bind { [weak self] title in
+            guard let strongSelf = self else { return }
+            strongSelf.title = title
+        }
+        
         viewModel.amount.bind { [weak self] amount in
             guard let strongSelf = self else { return }
 
-            UserDefaultService.save(key: .amount, value: amount)
+            strongSelf.userDefaultService.save(key: .amount, value: amount)
             
             // Only set amount when loading the textfield for the first time
             if strongSelf.isLoadingFirstTime {
@@ -55,7 +59,7 @@ class CurrencyViewController: UIViewController {
             guard let strongSelf = self else { return }
             
             if let currency = currency {
-                UserDefaultService.encodeAndSave(key: .selectedCurrency, value: currency)
+                strongSelf.userDefaultService.encodeAndSave(key: .selectedCurrency, value: currency)
                 strongSelf.viewModel.updateConvertedAmounts()
             }
             
@@ -69,13 +73,13 @@ class CurrencyViewController: UIViewController {
         }
         
         viewModel.currencies.bind { [weak self] currencies in
-            guard self != nil else { return }
-            FileStorageService.save(value: currencies, fileType: .currencies)
+            guard let strongSelf = self else { return }
+            strongSelf.fileStorageService.save(value: currencies, fileType: .currencies)
         }
         
         viewModel.latestExchangeRateModel.bind { [weak self] value in
-            guard self != nil else { return }
-            FileStorageService.save(value: value, fileType: .latestExchangeRates)
+            guard let strongSelf = self else { return }
+            strongSelf.fileStorageService.save(value: value, fileType: .latestExchangeRates)
         }
     }
 }

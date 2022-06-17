@@ -13,7 +13,13 @@ enum UserDefaultServiceKey: String {
     case selectedCurrency
 }
 
-class UserDefaultService {
+protocol UserDefaultServiceProtocol {
+    static func encodeAndSave<T>(key: UserDefaultServiceKey, value: T) where T: Codable
+    static func save<T>(key: UserDefaultServiceKey, value: T) where T: Codable
+    static func load<T>(key: UserDefaultServiceKey) -> T? where T: Codable
+}
+
+class UserDefaultService: UserDefaultServiceProtocol {
     static func encodeAndSave<T>(key: UserDefaultServiceKey, value: T) where T: Codable {
         do {
             let encoder = JSONEncoder()

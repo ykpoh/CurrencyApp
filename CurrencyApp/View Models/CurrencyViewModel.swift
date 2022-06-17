@@ -7,7 +7,20 @@
 
 import Foundation
 
-class CurrencyViewModel {
+protocol CurrencyViewModelProtocol {
+    var title: Box<String> { get }
+    var amount: Box<Double> { get }
+    var selectedCurrency: Box<Currency?> { get }
+    var currencies: Box<[Currency]> { get }
+    var convertedAmounts: Box<[ConvertedAmountViewModel]> { get }
+    var latestExchangeRateModel: Box<LatestExchangeRate?> { get }
+    func getCurrencies()
+    func getLatestExchangeRates()
+    func updateConvertedAmounts()
+}
+
+class CurrencyViewModel: CurrencyViewModelProtocol {
+    let title: Box<String> = Box("Convert")
     let amount: Box<Double> = Box(10.00)
     let selectedCurrency: Box<Currency?> = Box(nil)
     let currencies: Box<[Currency]> = Box([])
