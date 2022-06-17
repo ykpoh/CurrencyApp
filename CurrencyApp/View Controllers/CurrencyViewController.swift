@@ -30,6 +30,8 @@ class CurrencyViewController: UIViewController {
         tableView.dataSource = self
         
         amountTextField.delegate = self
+        
+        title = "Convert"
 
         tableView.register(UINib(nibName: "\(ConvertedAmountCell.self)", bundle: nil), forCellReuseIdentifier: "\(ConvertedAmountCell.self)")
         
@@ -54,6 +56,7 @@ class CurrencyViewController: UIViewController {
             
             if let currency = currency {
                 UserDefaultService.encodeAndSave(key: .selectedCurrency, value: currency)
+                strongSelf.viewModel.updateConvertedAmounts()
             }
             
             strongSelf.currencyTextField.text = currency?.fullName
@@ -70,12 +73,11 @@ class CurrencyViewController: UIViewController {
             FileStorageService.save(value: currencies, fileType: .currencies)
         }
         
-        viewModel.exchangeRates.bind { [weak self] rates in
+        viewModel.latestExchangeRateModel.bind { [weak self] value in
             guard self != nil else { return }
-            FileStorageService.save(value: rates, fileType: .exchangeRates)
+            FileStorageService.save(value: value, fileType: .latestExchangeRates)
         }
     }
-
 }
 
 extension CurrencyViewController: UITextFieldDelegate {
@@ -91,7 +93,6 @@ extension CurrencyViewController: UITextFieldDelegate {
 }
 
 extension CurrencyViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -108,10 +109,8 @@ extension CurrencyViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         let selectedCurrency = viewModel.currencies.value[row]
         if viewModel.selectedCurrency.value != selectedCurrency {
             viewModel.selectedCurrency.value = selectedCurrency
-            viewModel.getLatestExchangeRates(baseCurrency: selectedCurrency)
         }
     }
-    
 }
 
 extension CurrencyViewController: UITableViewDelegate, UITableViewDataSource {
@@ -127,6 +126,5 @@ extension CurrencyViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(ConvertedAmountCell.self)", for: indexPath) as! ConvertedAmountCell
         cell.configure(viewModel.convertedAmounts.value[indexPath.row])
         return cell
-        
     }
 }

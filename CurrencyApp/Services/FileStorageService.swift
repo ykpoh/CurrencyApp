@@ -9,7 +9,6 @@ import Foundation
 
 enum FileStorageServiceType {
     case currencies
-    case exchangeRates
     case latestExchangeRates
 }
 

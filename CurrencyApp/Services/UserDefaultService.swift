@@ -28,10 +28,6 @@ class UserDefaultService {
         UserDefaults.standard.set(value, forKey: key.rawValue)
     }
     
-    static func loadDouble(key: UserDefaultServiceKey) -> Double {
-        UserDefaults.standard.double(forKey: key.rawValue)
-    }
-    
     static func load<T>(key: UserDefaultServiceKey) -> T? where T: Codable {
         switch key {
         case .amount:

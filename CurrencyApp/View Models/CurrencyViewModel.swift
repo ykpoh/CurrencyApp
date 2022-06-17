@@ -12,12 +12,9 @@ class CurrencyViewModel {
     let selectedCurrency: Box<Currency?> = Box(nil)
     let currencies: Box<[Currency]> = Box([])
     let convertedAmounts: Box<[ConvertedAmountViewModel]> = Box([])
-    var latestExchangeRate: Box<LatestExchangeRate?> = Box(nil)
-    var exchangeRates: Box<[ExchangeRate]> = Box([])
+    var latestExchangeRateModel: Box<LatestExchangeRate?> = Box(nil)
     
-    var lastUpdateCurrencyDate: Date? = nil
-    var lastUpdateExchangeRateDate: Date? = nil
-    
+    weak var timer: Timer?
     
     init() {
         if let amount = UserDefaultService.load(key: .amount) as Double? {
@@ -30,85 +27,79 @@ class CurrencyViewModel {
         
         selectedCurrency.value = UserDefaultService.load(key: .selectedCurrency) as Currency?
         
-        if let exchangeRates = FileStorageService.load(fileType: .exchangeRates) as [ExchangeRate]? {
-            self.exchangeRates.value = exchangeRates
-            self.convertedAmounts.value = exchangeRates.compactMap({
-                convertAmount($0.currency, targetExchangeRate: $0)
-            })
+        if let latestExchangeRateModel = FileStorageService.load(fileType: .latestExchangeRates) as LatestExchangeRate? {
+            self.latestExchangeRateModel.value = latestExchangeRateModel
+            updateConvertedAmounts()
         }
         
         getCurrencies()
+        getLatestExchangeRates()
+    }
+    
+    deinit {
+        stopTimer()
     }
     
     func getCurrencies() {
-        if let lastUpdateCurrencyDate = lastUpdateCurrencyDate,
-           Date.now.minutesDifference(date: lastUpdateCurrencyDate) < 30 {
-            return
-        }
-        
         OpenExchangeRatesService.getCurrencies { [weak self] response, error in
             guard let strongSelf = self, let response = response, error == nil else {
                 return
             }
-            strongSelf.lastUpdateCurrencyDate = Date.now
             strongSelf.currencies.value = response
         }
     }
     
-    func getLatestExchangeRates(baseCurrency: Currency) {
-        if let lastUpdateExchangeRateDate = lastUpdateExchangeRateDate,
-           lastUpdateExchangeRateDate.minutesDifference(date: Date.now) < 30 {
-            return
-        }
+    @objc func getLatestExchangeRates() {
+        // Reset and start a timer to call exchange rate API every 30 minutes
+        startTimer()
         
         OpenExchangeRatesService.getLatestExchangeRates { [weak self] response, error in
-            guard let strongSelf = self, var rates = response?.rates, error == nil else {
+            guard let strongSelf = self, let response = response, error == nil else {
                 // Error handling
                 return
             }
             
-            strongSelf.lastUpdateExchangeRateDate = Date.now
+            strongSelf.latestExchangeRateModel.value = response
             
-            strongSelf.latestExchangeRate.value = response
-            
-            FileStorageService.save(value: response, fileType: .latestExchangeRates)
-            
-            // Handle case when baseCurrency doesn't exist in rates array
-            guard let baseCurrencySymbol = baseCurrency.symbol else {
-                return
-            }
-            
-            guard let baseCurrencyToUSDRate = rates.first(where: { (key, value) in
-                key == baseCurrency.symbol
-            })?.value else {
-                // Error handling
-                return
-            }
-            
-            // Remove base currency from the rates array
-            rates.removeValue(forKey: baseCurrencySymbol)
-            
-            var exchangeRates = [ExchangeRate]()
-            var convertedAmounts = [ConvertedAmountViewModel]()
-            
-            rates.forEach({ (key, value) in
-                let rate = value / baseCurrencyToUSDRate
-                let exchangeRate = ExchangeRate(currency: Currency(symbol: key), rate: rate)
-                exchangeRates.append(exchangeRate)
-                
-                let convertedAmount = strongSelf.convertAmount(baseCurrency, targetExchangeRate: exchangeRate)
-                convertedAmounts.append(convertedAmount)
-            })
-            
-            strongSelf.exchangeRates.value = exchangeRates
-            strongSelf.convertedAmounts.value = convertedAmounts
+            strongSelf.updateConvertedAmounts()
         }
     }
     
     func updateConvertedAmounts() {
-        self.convertedAmounts.value = exchangeRates.value.compactMap({
-            convertAmount($0.currency, targetExchangeRate: $0)
+        guard let baseCurrency = selectedCurrency.value, let baseCurrencySymbol = baseCurrency.symbol else { return }
+        guard var latestExchangeRates = latestExchangeRateModel.value?.rates else { return }
+        
+        guard let baseCurrencyToUSDRate = latestExchangeRates.first(where: { (key, value) in
+            key == baseCurrency.symbol
+        })?.value else {
+            // Error handling
+            return
+        }
+        
+        // Remove base currency from the rates array
+        latestExchangeRates.removeValue(forKey: baseCurrencySymbol)
+        
+        var convertedAmounts = [ConvertedAmountViewModel]()
+        
+        latestExchangeRates.forEach({ (key, value) in
+            let rate = value / baseCurrencyToUSDRate
+            let exchangeRate = ExchangeRate(currency: Currency(symbol: key), rate: rate)
+
+            let convertedAmount = convertAmount(baseCurrency, targetExchangeRate: exchangeRate)
+            convertedAmounts.append(convertedAmount)
         })
+        
+        self.convertedAmounts.value = convertedAmounts
+    }
+    
+    private func startTimer() {
+        stopTimer()
+        timer = nil
+        timer = Timer.scheduledTimer(timeInterval: 1800, target: self, selector: #selector(getLatestExchangeRates), userInfo: nil, repeats: true)
+    }
+    
+    private func stopTimer() {
+        timer?.invalidate()
     }
     
     private func convertAmount(_ baseCurrency: Currency, targetExchangeRate: ExchangeRate) -> ConvertedAmountViewModel {
@@ -124,11 +115,5 @@ class CurrencyViewModel {
         convertedAmountViewModel.exchangeRate.value = exchangeRateText
         convertedAmountViewModel.convertedAmount.value = convertedAmountText
         return convertedAmountViewModel
-    }
-}
-
-extension Date {
-    func minutesDifference(date: Date) -> Int {
-        return Calendar.current.dateComponents([.minute], from: self, to: date).minute ?? 0
     }
 }

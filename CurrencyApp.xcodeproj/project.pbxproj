@@ -30,6 +30,7 @@
 		1289E9652858BCB70039D9BB /* ConvertedAmountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1289E9632858BCB70039D9BB /* ConvertedAmountCell.xib */; };
 		1289E96D285A0DCE0039D9BB /* FileStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1289E96C285A0DCE0039D9BB /* FileStorageService.swift */; };
 		1289E96F285A24C10039D9BB /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1289E96E285A24C10039D9BB /* ExchangeRate.swift */; };
+		12F2334C285C64FA009DD35D /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F2334B285C64FA009DD35D /* Date+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		1289E9632858BCB70039D9BB /* ConvertedAmountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConvertedAmountCell.xib; sourceTree = "<group>"; };
 		1289E96C285A0DCE0039D9BB /* FileStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorageService.swift; sourceTree = "<group>"; };
 		1289E96E285A24C10039D9BB /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
+		12F2334B285C64FA009DD35D /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				1289E94428559C870039D9BB /* Box.swift */,
+				12F2334B285C64FA009DD35D /* Date+Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				1289E94828559D070039D9BB /* CurrencyViewModel.swift in Sources */,
 				1289E9642858BCB70039D9BB /* ConvertedAmountCell.swift in Sources */,
 				1289E94528559C870039D9BB /* Box.swift in Sources */,
+				12F2334C285C64FA009DD35D /* Date+Extensions.swift in Sources */,
 				1212B739285B6C8300354356 /* UserDefaultService.swift in Sources */,
 				1289E905285482F30039D9BB /* SceneDelegate.swift in Sources */,
 				1289E96F285A24C10039D9BB /* ExchangeRate.swift in Sources */,
