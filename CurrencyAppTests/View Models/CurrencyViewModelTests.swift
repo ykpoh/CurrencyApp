@@ -19,7 +19,7 @@ class CurrencyViewModelTests: XCTestCase {
     let brazilCurrency = Currency(symbol: "BRL", name: "Brazilian Real")
     let thaiCurrency = Currency(symbol: "THB", name: "Thai Baht")
     let malaysiaCurrency = Currency(symbol: "MYR", name: "Malaysian Ringgit")
-//    let japanCurrency = Currency(symbol: "JPY", name: "Japanese Yen")
+    let vefCurrency = Currency(symbol: "VEF", name: "Venezuelan Bolívar Fuerte (Old)")
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -204,9 +204,44 @@ class CurrencyViewModelTests: XCTestCase {
         let viewModel = sut.convertAmount(Currency(symbol: australianDollarRateModel!.key), targetExchangeRate: thaiBahtExchangeRateModel)
     
         // then
-        XCTAssertEqual(viewModel.exchangeRate.value, "(1 AUD = \(String(format: "%.4f", ausToTHBRate)) THB)")
-        XCTAssertEqual(viewModel.convertedAmount.value, "THB \(String(format: "%.2f", amount * ausToTHBRate))")
+        XCTAssertEqual(viewModel.exchangeRate.value, "(1 AUD = 24.4768 THB)")
+        XCTAssertEqual(viewModel.convertedAmount.value, "THB 3684.99")
         XCTAssertEqual(viewModel.exchangeRateModel, thaiBahtExchangeRateModel)
+    }
+    
+    func testEmptyURL_GetCurrencies_ReturnsErrorMessage() {
+        let message = "Failed request from OpenExchangeRates: error_message"
+        mockOpenExchangeServiceType.getCurrenciesError = .emptyURL(message: message)
+        
+        initializeViewModel()
+        
+        XCTAssertNotNil(sut.errorMessage.value)
+        XCTAssertEqual(sut.errorMessage.value, message)
+    }
+    
+    func testInvalidResponse_GetLatestExchangeRates_ReturnsErrorMessage() {
+        let message = "Failed request from OpenExchangeRates: error_message"
+        mockOpenExchangeServiceType.getLatestExchangeRateError = .invalidResponse(message: message)
+        
+        initializeViewModel()
+        
+        XCTAssertNotNil(sut.errorMessage.value)
+        XCTAssertEqual(sut.errorMessage.value, message)
+    }
+    
+    func testUpdateConvertedAmounts_GivenSelectedCurrencyNotExistedInExchangeRates() {
+        // given
+        initializeViewModel()
+        sut.selectedCurrency.value = vefCurrency
+        sut.latestExchangeRateModel.value = getLatestExchangeRateFromJSON()
+        
+        // when
+        sut.updateConvertedAmounts()
+        
+        // then
+        XCTAssertNotNil(sut.errorMessage.value)
+        XCTAssertEqual(sut.errorMessage.value, "Selected currency doesn't have any exchange rate data. Please select other currencies and try again!")
+        XCTAssertTrue(sut.convertedAmounts.value.isEmpty)
     }
     
     func testDeinit_InvalidateTimerAndSetTimerToNil() {

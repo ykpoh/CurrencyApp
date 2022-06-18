@@ -29,12 +29,6 @@ class ConvertedAmountCell: UITableViewCell {
         }
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
     func configure(_ viewModel: ConvertedAmountViewModel) {
         self.viewModel.convertedAmount.value = viewModel.convertedAmount.value
         self.viewModel.exchangeRate.value = viewModel.exchangeRate.value

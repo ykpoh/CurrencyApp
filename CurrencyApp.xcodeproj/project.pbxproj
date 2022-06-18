@@ -152,7 +152,6 @@
 				12F2334D285C6A55009DD35D /* View Models */,
 				1289E95B28577C2D0039D9BB /* Extensions */,
 				1289E9522856F3510039D9BB /* Models */,
-				1289E94F2856F2BF0039D9BB /* Services */,
 				1289E9382854ADA00039D9BB /* Data */,
 			);
 			path = CurrencyAppTests;
@@ -222,13 +221,6 @@
 				1289E9632858BCB70039D9BB /* ConvertedAmountCell.xib */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		1289E94F2856F2BF0039D9BB /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		1289E9522856F3510039D9BB /* Models */ = {
@@ -585,7 +577,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -613,7 +605,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -18,6 +18,7 @@ class MockCurrencyViewModel: CurrencyViewModelProtocol {
     let currencies: Box<[Currency]> = Box([])
     let convertedAmounts: Box<[ConvertedAmountViewModel]> = Box([])
     var latestExchangeRateModel: Box<LatestExchangeRate?> = Box(nil)
+    var errorMessage: Box<String?> = Box(nil)
 
     func getCurrencies() {
         getCurrenciesCalled = true

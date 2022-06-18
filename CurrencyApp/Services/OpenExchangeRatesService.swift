@@ -8,11 +8,11 @@
 import Foundation
 
 enum OpenExchangeRatesError: Error {
-    case invalidResponse
-    case noData
-    case failedRequest
-    case invalidData
-    case emptyURL
+    case invalidResponse(message: String)
+    case noData(message: String)
+    case failedRequest(message: String)
+    case invalidData(message: String)
+    case emptyURL(message: String)
 }
 
 protocol OpenExchangeRatesProtocol {
@@ -34,8 +34,7 @@ class OpenExchangeRatesService: OpenExchangeRatesProtocol {
         ]
         
         guard let url = urlBuilder.url else {
-            print("Empty url detected.")
-            completion(nil, .emptyURL)
+            completion(nil, .emptyURL(message: "Empty url detected."))
             return
         }
         
@@ -55,8 +54,7 @@ class OpenExchangeRatesService: OpenExchangeRatesProtocol {
                     
                     completion(currencyData, nil)
                 } catch {
-                    print("Unable to decode OpenExchangeRates response: \(error.localizedDescription)")
-                    completion(nil, .invalidData)
+                    completion(nil, .invalidData(message: "Unable to decode OpenExchangeRates response: \(error.localizedDescription)"))
                 }
             }
         }.resume()
@@ -72,8 +70,7 @@ class OpenExchangeRatesService: OpenExchangeRatesProtocol {
         ]
         
         guard let url = urlBuilder.url else {
-            print("Empty url detected.")
-            completion(nil, .emptyURL)
+            completion(nil, .emptyURL(message: "Empty url detected."))
             return
         }
         
@@ -89,8 +86,7 @@ class OpenExchangeRatesService: OpenExchangeRatesProtocol {
                     let ratesData = try decoder.decode(LatestExchangeRate.self, from: data!)
                     completion(ratesData, nil)
                 } catch {
-                    print("Unable to decode OpenExchangeRates response: \(error.localizedDescription)")
-                    completion(nil, .invalidData)
+                    completion(nil, .invalidData(message: "Unable to decode OpenExchangeRates response: \(error.localizedDescription)"))
                 }
             }
         }.resume()
@@ -98,23 +94,19 @@ class OpenExchangeRatesService: OpenExchangeRatesProtocol {
     
     private static func checkErrors(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> OpenExchangeRatesError? {
         guard error == nil else {
-            print("Failed request from OpenExchangeRates: \(error!.localizedDescription)")
-            return .failedRequest
+            return .failedRequest(message: "Failed request from OpenExchangeRates: \(error!.localizedDescription)")
         }
         
         guard data != nil else {
-            print("No data returned from OpenExchangeRates")
-            return .noData
+            return .noData(message: "No data returned from OpenExchangeRates")
         }
         
         guard let response = response as? HTTPURLResponse else {
-            print("Unable to process OpenExchangeRates response")
-            return .invalidResponse
+            return .invalidResponse(message: "Unable to process OpenExchangeRates response")
         }
         
         guard response.statusCode == 200 else {
-            print("Failure response from OpenExchangeRates: \(response.statusCode)")
-            return .failedRequest
+            return .failedRequest(message: "Failure response from OpenExchangeRates: \(response.statusCode)")
         }
         
         return nil

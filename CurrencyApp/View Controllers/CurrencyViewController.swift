@@ -81,6 +81,12 @@ class CurrencyViewController: UIViewController {
             guard let strongSelf = self else { return }
             strongSelf.fileStorageService.save(value: value, fileType: .latestExchangeRates)
         }
+        
+        viewModel.errorMessage.bind { [weak self] value in
+            guard let strongSelf = self else { return }
+            guard let value = value else { return }
+            strongSelf.showAlert(value)
+        }
     }
 }
 
