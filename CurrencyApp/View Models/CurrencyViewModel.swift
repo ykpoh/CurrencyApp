@@ -28,19 +28,31 @@ class CurrencyViewModel: CurrencyViewModelProtocol {
     var latestExchangeRateModel: Box<LatestExchangeRate?> = Box(nil)
     
     weak var timer: Timer?
+    var timerType: Timer.Type
+    var fileStorageServiceType: FileStorageServiceProtocol.Type
+    var userDefaultServiceType: UserDefaultServiceProtocol.Type
+    var openExchangeRatesServiceType: OpenExchangeRatesProtocol.Type
     
-    init() {
-        if let amount = UserDefaultService.load(key: .amount) as Double? {
+    init(fileStorageServiceType: FileStorageServiceProtocol.Type = FileStorageService.self,
+         userDefaultServiceType: UserDefaultServiceProtocol.Type = UserDefaultService.self,
+         openExchangeRatesServiceType: OpenExchangeRatesProtocol.Type = OpenExchangeRatesService.self,
+         timerType: Timer.Type = Timer.self) {
+        self.timerType = timerType
+        self.fileStorageServiceType = fileStorageServiceType
+        self.userDefaultServiceType = userDefaultServiceType
+        self.openExchangeRatesServiceType = openExchangeRatesServiceType
+        
+        if let amount = userDefaultServiceType.load(key: .amount) as Double? {
             self.amount.value = amount
         }
         
-        if let currencies: [Currency] = FileStorageService.load(fileType: .currencies) as [Currency]? {
+        if let currencies: [Currency] = fileStorageServiceType.load(fileType: .currencies) as [Currency]? {
             self.currencies.value = currencies
         }
         
-        selectedCurrency.value = UserDefaultService.load(key: .selectedCurrency) as Currency?
+        selectedCurrency.value = userDefaultServiceType.load(key: .selectedCurrency) as Currency?
         
-        if let latestExchangeRateModel = FileStorageService.load(fileType: .latestExchangeRates) as LatestExchangeRate? {
+        if let latestExchangeRateModel = fileStorageServiceType.load(fileType: .latestExchangeRates) as LatestExchangeRate? {
             self.latestExchangeRateModel.value = latestExchangeRateModel
             updateConvertedAmounts()
         }
@@ -54,11 +66,11 @@ class CurrencyViewModel: CurrencyViewModelProtocol {
     }
     
     func getCurrencies() {
-        OpenExchangeRatesService.getCurrencies { [weak self] response, error in
+        openExchangeRatesServiceType.getCurrencies { [weak self] response, error in
             guard let strongSelf = self, let response = response, error == nil else {
                 return
             }
-            strongSelf.currencies.value = response
+            strongSelf.currencies.value = response.sorted(by: {$0.symbol ?? "" < $1.symbol ?? ""})
         }
     }
     
@@ -66,7 +78,7 @@ class CurrencyViewModel: CurrencyViewModelProtocol {
         // Reset and start a timer to call exchange rate API every 30 minutes
         startTimer()
         
-        OpenExchangeRatesService.getLatestExchangeRates { [weak self] response, error in
+        openExchangeRatesServiceType.getLatestExchangeRates { [weak self] response, error in
             guard let strongSelf = self, let response = response, error == nil else {
                 // Error handling
                 return
@@ -92,9 +104,11 @@ class CurrencyViewModel: CurrencyViewModelProtocol {
         // Remove base currency from the rates array
         latestExchangeRates.removeValue(forKey: baseCurrencySymbol)
         
+        let sortedLatestExchangeRates = latestExchangeRates.sorted(by: {$0.key < $1.key})
+        
         var convertedAmounts = [ConvertedAmountViewModel]()
         
-        latestExchangeRates.forEach({ (key, value) in
+        sortedLatestExchangeRates.forEach({ (key, value) in
             let rate = value / baseCurrencyToUSDRate
             let exchangeRate = ExchangeRate(currency: Currency(symbol: key), rate: rate)
 
@@ -107,15 +121,15 @@ class CurrencyViewModel: CurrencyViewModelProtocol {
     
     private func startTimer() {
         stopTimer()
-        timer = nil
-        timer = Timer.scheduledTimer(timeInterval: 1800, target: self, selector: #selector(getLatestExchangeRates), userInfo: nil, repeats: true)
+        timer = timerType.scheduledTimer(timeInterval: 1800, target: self, selector: #selector(getLatestExchangeRates), userInfo: nil, repeats: true)
     }
     
     private func stopTimer() {
         timer?.invalidate()
+        timer = nil
     }
     
-    private func convertAmount(_ baseCurrency: Currency, targetExchangeRate: ExchangeRate) -> ConvertedAmountViewModel {
+    internal func convertAmount(_ baseCurrency: Currency, targetExchangeRate: ExchangeRate) -> ConvertedAmountViewModel {
         let amount = amount.value * targetExchangeRate.rate
         
         let roundedRate = String(format: "%.4f", targetExchangeRate.rate)
@@ -127,6 +141,7 @@ class CurrencyViewModel: CurrencyViewModelProtocol {
         let convertedAmountViewModel = ConvertedAmountViewModel()
         convertedAmountViewModel.exchangeRate.value = exchangeRateText
         convertedAmountViewModel.convertedAmount.value = convertedAmountText
+        convertedAmountViewModel.exchangeRateModel = targetExchangeRate
         return convertedAmountViewModel
     }
 }

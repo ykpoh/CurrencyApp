@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1212B739285B6C8300354356 /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1212B738285B6C8300354356 /* UserDefaultService.swift */; };
+		1230D28D285D776D00B8D700 /* MockTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1230D28C285D776D00B8D700 /* MockTimer.swift */; };
+		1230D28F285D7FB700B8D700 /* UpdatedLatestExchangeRate.json in Resources */ = {isa = PBXBuildFile; fileRef = 1230D28E285D7FB700B8D700 /* UpdatedLatestExchangeRate.json */; };
 		1289E903285482F30039D9BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1289E902285482F30039D9BB /* AppDelegate.swift */; };
 		1289E905285482F30039D9BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1289E904285482F30039D9BB /* SceneDelegate.swift */; };
 		1289E907285482F30039D9BB /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1289E906285482F30039D9BB /* CurrencyViewController.swift */; };
@@ -34,6 +36,9 @@
 		12F23352285C6D1E009DD35D /* ConvertedAmountCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F23351285C6D1E009DD35D /* ConvertedAmountCellTests.swift */; };
 		12F23355285C74FF009DD35D /* MockExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F23354285C74FF009DD35D /* MockExtensions.swift */; };
 		12F23357285C7587009DD35D /* CurrencyViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F23356285C7587009DD35D /* CurrencyViewControllerTests.swift */; };
+		12F2335A285C8EEF009DD35D /* MockServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F23359285C8EEF009DD35D /* MockServices.swift */; };
+		12F2335C285C8F1F009DD35D /* MockViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F2335B285C8F1F009DD35D /* MockViewModels.swift */; };
+		12F2335E285C904B009DD35D /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F2335D285C904B009DD35D /* UIViewController+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +53,8 @@
 
 /* Begin PBXFileReference section */
 		1212B738285B6C8300354356 /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
+		1230D28C285D776D00B8D700 /* MockTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTimer.swift; sourceTree = "<group>"; };
+		1230D28E285D7FB700B8D700 /* UpdatedLatestExchangeRate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UpdatedLatestExchangeRate.json; sourceTree = "<group>"; };
 		1289E8FF285482F30039D9BB /* CurrencyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1289E902285482F30039D9BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1289E904285482F30039D9BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +84,9 @@
 		12F23351285C6D1E009DD35D /* ConvertedAmountCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertedAmountCellTests.swift; sourceTree = "<group>"; };
 		12F23354285C74FF009DD35D /* MockExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockExtensions.swift; sourceTree = "<group>"; };
 		12F23356285C7587009DD35D /* CurrencyViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewControllerTests.swift; sourceTree = "<group>"; };
+		12F23359285C8EEF009DD35D /* MockServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServices.swift; sourceTree = "<group>"; };
+		12F2335B285C8F1F009DD35D /* MockViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockViewModels.swift; sourceTree = "<group>"; };
+		12F2335D285C904B009DD35D /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +147,7 @@
 		1289E918285482F40039D9BB /* CurrencyAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				12F23353285C74EE009DD35D /* Mocks */,
+				12F23358285C8ED1009DD35D /* Mocks */,
 				12F23350285C6D10009DD35D /* Views */,
 				12F2334D285C6A55009DD35D /* View Models */,
 				1289E95B28577C2D0039D9BB /* Extensions */,
@@ -152,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				1289E96028577D7F0039D9BB /* LatestExchangeRate.json */,
+				1230D28E285D7FB700B8D700 /* UpdatedLatestExchangeRate.json */,
 				1289E9392854AE2B0039D9BB /* Currencies.json */,
 			);
 			path = Data;
@@ -182,6 +193,7 @@
 			children = (
 				1289E94428559C870039D9BB /* Box.swift */,
 				12F2334B285C64FA009DD35D /* Date+Extensions.swift */,
+				12F2335D285C904B009DD35D /* UIViewController+Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -231,6 +243,7 @@
 		1289E95B28577C2D0039D9BB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				12F23354285C74FF009DD35D /* MockExtensions.swift */,
 				1289E95C28577C4C0039D9BB /* XCTestCase+Helpers.swift */,
 			);
 			path = Extensions;
@@ -253,10 +266,12 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		12F23353285C74EE009DD35D /* Mocks */ = {
+		12F23358285C8ED1009DD35D /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				12F23354285C74FF009DD35D /* MockExtensions.swift */,
+				12F23359285C8EEF009DD35D /* MockServices.swift */,
+				12F2335B285C8F1F009DD35D /* MockViewModels.swift */,
+				1230D28C285D776D00B8D700 /* MockTimer.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -356,6 +371,7 @@
 			files = (
 				1289E93A2854AE2B0039D9BB /* Currencies.json in Resources */,
 				1289E96128577D7F0039D9BB /* LatestExchangeRate.json in Resources */,
+				1230D28F285D7FB700B8D700 /* UpdatedLatestExchangeRate.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +389,7 @@
 				1289E95F28577D1C0039D9BB /* LatestExchangeRate.swift in Sources */,
 				1289E903285482F30039D9BB /* AppDelegate.swift in Sources */,
 				1289E94828559D070039D9BB /* CurrencyViewModel.swift in Sources */,
+				12F2335E285C904B009DD35D /* UIViewController+Extensions.swift in Sources */,
 				1289E9642858BCB70039D9BB /* ConvertedAmountCell.swift in Sources */,
 				1289E94528559C870039D9BB /* Box.swift in Sources */,
 				12F2334C285C64FA009DD35D /* Date+Extensions.swift in Sources */,
@@ -389,11 +406,14 @@
 			files = (
 				1289E95D28577C4C0039D9BB /* XCTestCase+Helpers.swift in Sources */,
 				12F23352285C6D1E009DD35D /* ConvertedAmountCellTests.swift in Sources */,
+				12F2335C285C8F1F009DD35D /* MockViewModels.swift in Sources */,
 				12F2334F285C6A75009DD35D /* CurrencyViewModelTests.swift in Sources */,
 				1289E95A28577BD60039D9BB /* LatestExchangeRateTests.swift in Sources */,
 				12F23357285C7587009DD35D /* CurrencyViewControllerTests.swift in Sources */,
 				1289E9372854AD6B0039D9BB /* CurrencyTests.swift in Sources */,
 				12F23355285C74FF009DD35D /* MockExtensions.swift in Sources */,
+				12F2335A285C8EEF009DD35D /* MockServices.swift in Sources */,
+				1230D28D285D776D00B8D700 /* MockTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

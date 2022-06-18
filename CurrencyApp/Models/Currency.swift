@@ -24,11 +24,11 @@ struct Currency: Codable {
 }
 
 extension Currency: Equatable {
-  static func == (lhs: Currency, rhs: Currency) -> Bool {
-      if lhs.symbol != rhs.symbol || lhs.name != rhs.name {
-          return false
-      }
-      
-      return true
-  }
+    static func == (lhs: Currency, rhs: Currency) -> Bool {
+        if lhs.symbol != rhs.symbol || lhs.name != rhs.name {
+            return false
+        }
+        
+        return true
+    }
 }

@@ -11,3 +11,13 @@ struct ExchangeRate: Codable {
     let currency: Currency
     let rate: Double
 }
+
+extension ExchangeRate: Equatable {
+    static func == (lhs: ExchangeRate, rhs: ExchangeRate) -> Bool {
+        if lhs.currency != rhs.currency || lhs.rate != rhs.rate {
+            return false
+        }
+        
+        return true
+    }
+}

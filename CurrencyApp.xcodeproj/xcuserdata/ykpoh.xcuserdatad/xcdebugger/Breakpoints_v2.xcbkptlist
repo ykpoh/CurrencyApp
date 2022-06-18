@@ -23,154 +23,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3CA2C8EC-5CD3-4B77-AF57-0B6B72D10EB5"
+            uuid = "11E289A0-4B3F-4B89-9A0C-3965DD3DEA0F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CurrencyAppTests/Views/CurrencyViewControllerTests.swift"
+            filePath = "CurrencyAppTests/Delegates/TestingAppDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
-            landmarkName = "getCurrencies()"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "application(_:configurationForConnecting:options:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "3CA2C8EC-5CD3-4B77-AF57-0B6B72D10EB5 - 76075691723a4e6d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CurrencyAppTests.CurrencyViewControllerTests.MockCurrencyViewModel.getCurrencies() -&gt; ()"
-                  moduleName = "CurrencyAppTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ykpoh/Documents/CurrencyApp/CurrencyAppTests/Views/CurrencyViewControllerTests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "119"
-                  endingLineNumber = "119"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "3CA2C8EC-5CD3-4B77-AF57-0B6B72D10EB5 - 76075691723a4e4e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CurrencyAppTests.CurrencyViewControllerTests.MockCurrencyViewModel.getCurrencies() -&gt; ()"
-                  moduleName = "CurrencyAppTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ykpoh/Documents/CurrencyApp/CurrencyAppTests/Views/CurrencyViewControllerTests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "120"
-                  endingLineNumber = "120"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "3CA2C8EC-5CD3-4B77-AF57-0B6B72D10EB5 - 76075691723a4d93"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CurrencyAppTests.CurrencyViewControllerTests.MockCurrencyViewModel.getCurrencies() -&gt; ()"
-                  moduleName = "CurrencyAppTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ykpoh/Documents/CurrencyApp/CurrencyAppTests/Views/CurrencyViewControllerTests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "125"
-                  endingLineNumber = "125"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "3CA2C8EC-5CD3-4B77-AF57-0B6B72D10EB5 - 76075691723a4c5d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CurrencyAppTests.CurrencyViewControllerTests.MockCurrencyViewModel.getCurrencies() -&gt; ()"
-                  moduleName = "CurrencyAppTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ykpoh/Documents/CurrencyApp/CurrencyAppTests/Views/CurrencyViewControllerTests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "135"
-                  endingLineNumber = "135"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "3CA2C8EC-5CD3-4B77-AF57-0B6B72D10EB5 - 76075691723a4be0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CurrencyAppTests.CurrencyViewControllerTests.MockCurrencyViewModel.getCurrencies() -&gt; ()"
-                  moduleName = "CurrencyAppTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ykpoh/Documents/CurrencyApp/CurrencyAppTests/Views/CurrencyViewControllerTests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "138"
-                  endingLineNumber = "138"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "3CA2C8EC-5CD3-4B77-AF57-0B6B72D10EB5 - 76075691723a4992"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CurrencyAppTests.CurrencyViewControllerTests.MockCurrencyViewModel.getCurrencies() -&gt; ()"
-                  moduleName = "CurrencyAppTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ykpoh/Documents/CurrencyApp/CurrencyAppTests/Views/CurrencyViewControllerTests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "156"
-                  endingLineNumber = "156"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "3CA2C8EC-5CD3-4B77-AF57-0B6B72D10EB5 - 76075691723a48b9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CurrencyAppTests.CurrencyViewControllerTests.MockCurrencyViewModel.getCurrencies() -&gt; ()"
-                  moduleName = "CurrencyAppTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ykpoh/Documents/CurrencyApp/CurrencyAppTests/Views/CurrencyViewControllerTests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "163"
-                  endingLineNumber = "163"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "3CA2C8EC-5CD3-4B77-AF57-0B6B72D10EB5 - 76075691723a47c0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CurrencyAppTests.CurrencyViewControllerTests.MockCurrencyViewModel.getCurrencies() -&gt; ()"
-                  moduleName = "CurrencyAppTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ykpoh/Documents/CurrencyApp/CurrencyAppTests/Views/CurrencyViewControllerTests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "170"
-                  endingLineNumber = "170"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "3CA2C8EC-5CD3-4B77-AF57-0B6B72D10EB5 - 76075691723a46e7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CurrencyAppTests.CurrencyViewControllerTests.MockCurrencyViewModel.getCurrencies() -&gt; ()"
-                  moduleName = "CurrencyAppTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ykpoh/Documents/CurrencyApp/CurrencyAppTests/Views/CurrencyViewControllerTests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "177"
-                  endingLineNumber = "177"
-                  offsetFromSymbolStart = "40">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "81B0E3FF-8D00-420C-B2D0-616620DB6619"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyAppTests/Delegates/TestingRootViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "loadView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E30F38A-6B51-4C43-9E71-B586D373C5B4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyAppTests/Mocks/MockTimer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "invalidate()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

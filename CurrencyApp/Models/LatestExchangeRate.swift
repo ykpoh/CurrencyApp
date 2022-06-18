@@ -31,3 +31,13 @@ struct LatestExchangeRate: Codable {
         }
     }
 }
+
+extension LatestExchangeRate: Equatable {
+  static func == (lhs: LatestExchangeRate, rhs: LatestExchangeRate) -> Bool {
+      if lhs.disclaimer != rhs.disclaimer || lhs.license != rhs.license || lhs.timestamp != rhs.timestamp || lhs.base != rhs.base || lhs.rates != rhs.rates {
+          return false
+      }
+      
+      return true
+  }
+}
