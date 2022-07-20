@@ -21,10 +21,15 @@ protocol OpenExchangeRatesProtocol {
 }
 
 class OpenExchangeRatesService: OpenExchangeRatesProtocol {
-    private static let apiID = "a8fef42612f0460ebea6884ed523ddcc"
+    // Obtain app id by registering in openexchangerates.org
+    private static let apiID = "app_id"
     private static let host = "openexchangerates.org"
     
     static func getCurrencies(completion: @escaping ([Currency]?, OpenExchangeRatesError?) -> ()) {
+        defer {
+            
+            
+        }
         var urlBuilder = URLComponents()
         urlBuilder.scheme = "https"
         urlBuilder.host = host
